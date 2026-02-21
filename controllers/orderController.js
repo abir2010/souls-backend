@@ -47,6 +47,7 @@ exports.createOrder = async (req, res, next) => {
         size: item.size,
         quantity: item.quantity,
         priceAtPurchase: itemPrice,
+        category: product.category,
       });
     }
 
