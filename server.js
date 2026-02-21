@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 // Allow requests from your Vite frontend
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://souls-frontend.vercel.app" ],
     credentials: true, // Important if you use cookies later
   }),
 );
