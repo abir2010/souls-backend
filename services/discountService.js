@@ -15,7 +15,7 @@ exports.calculateBill = (items, settings) => {
     settings.promotions;
 
   if (subTotal >= globalDiscountThreshold) {
-    discountAmount = (subTotal * globalDiscountPercentage) / 100;
+    discountAmount = Math.round((subTotal * globalDiscountPercentage) / 100);
   }
 
   // 3. Determine Shipping Charge

@@ -67,7 +67,6 @@ exports.moderateReview = async (req, res, next) => {
 // @route   GET /api/reviews/product/:productId
 // @access  Public
 exports.getReviewsById = async (req, res, next) => {
-  console.log(req);
   try {
     const reviews = await Review.find({
       product: req.params.productId,

@@ -37,7 +37,15 @@ const orderSchema = new mongoose.Schema(
         category: {
           type: String,
           required: true,
-          enum: ["Panjabi", "Pajama", "Shirt", "T-Shirt", "Pant"],
+          enum: [
+            "Panjabi",
+            "Pajama",
+            "Shirt",
+            "T-Shirt",
+            "Pant",
+            "Polo T-Shirt",
+            "Drop Shoulder",
+          ],
         },
       },
     ],

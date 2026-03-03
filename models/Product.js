@@ -18,7 +18,15 @@ const productSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ["Panjabi", "Pajama", "Shirt", "T-Shirt", "Pant"],
+      enum: [
+        "Panjabi",
+        "Pajama",
+        "Shirt",
+        "T-Shirt",
+        "Pant",
+        "Polo T-Shirt",
+        "Drop Shoulder",
+      ],
     },
 
     // Pricing
@@ -75,11 +83,11 @@ const productSchema = new mongoose.Schema(
 productSchema.virtual("finalPrice").get(function () {
   if (this.discount && this.discount.value > 0) {
     if (this.discount.type === "percentage") {
-      return this.price - this.price * (this.discount.value / 100);
+      return Math.round(this.price - this.price * (this.discount.value / 100));
     }
-    return this.price - this.discount.value;
+    return Math.round(this.price - this.discount.value);
   }
-  return this.price;
+  return Math.round(this.price);
 });
 
 module.exports = mongoose.model("Product", productSchema);

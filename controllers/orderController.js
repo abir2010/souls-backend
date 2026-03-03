@@ -60,8 +60,9 @@ exports.createOrder = async (req, res, next) => {
     // A. Apply Global Discount (The ৳5000 Rule)
     let globalDiscount = 0;
     if (subTotal >= settings.promotions.globalDiscountThreshold) {
-      globalDiscount =
-        (subTotal * settings.promotions.globalDiscountPercentage) / 100;
+      globalDiscount = Math.round(
+        (subTotal * settings.promotions.globalDiscountPercentage) / 100,
+      );
     }
 
     // B. Apply Coupon Logic (NEW)
@@ -73,9 +74,9 @@ exports.createOrder = async (req, res, next) => {
       const coupon = await validateCoupon(couponCode, subTotal);
 
       if (coupon.discountType === "percentage") {
-        couponDiscount = (subTotal * coupon.discountValue) / 100;
+        couponDiscount = Math.round((subTotal * coupon.discountValue) / 100);
       } else {
-        couponDiscount = coupon.discountValue;
+        couponDiscount = Math.round(coupon.discountValue);
       }
 
       // Track the coupon for the Order model
@@ -87,8 +88,8 @@ exports.createOrder = async (req, res, next) => {
     }
 
     // C. Final Calculation
-    const totalDiscount = globalDiscount + couponDiscount;
-    const totalAmount = subTotal + shippingCharge - totalDiscount;
+    const totalDiscount = Math.round(globalDiscount + couponDiscount);
+    const totalAmount = Math.round(subTotal + shippingCharge - totalDiscount);
     const orderId = `BD-${Date.now().toString().slice(-6)}`;
 
     // 3. Save Order with Coupon Tracking
