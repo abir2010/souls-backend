@@ -87,7 +87,7 @@ exports.manageProduct = async (req, res, next) => {
 };
 
 // @desc    Delete Product
-// @route   DELETE /api/admin/products/:id
+// @route   DELETE /api/products/:id
 // @access  Private (Admin Only)
 exports.deleteProduct = async (req, res, next) => {
   try {
